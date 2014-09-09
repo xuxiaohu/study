@@ -1,0 +1,13 @@
+<div id="test_div">
+  <input type="text" id="test"/>
+  <input type="text" id="test1"/>
+</div>
+<script type="text/javascript" src="jquery1.7.2.js">
+</script>
+<script type="text/javascript" src="valid_text.js">
+</script>
+<script type="text/javascript">
+$.validText.init({elem:"#test_div",on_success:function(){},on_error:function(){}});
+$("#test").validText({required: true,required_msg:"This field is required."});
+$("#test1").validText({required: true,required_msg:"This field is required."});
+</script>

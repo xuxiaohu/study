@@ -1,0 +1,45 @@
+<!DOCUTYPE html>
+<html>
+<head>
+	<title>
+    draw the line by canvas
+	</title>
+</head>
+<body>
+  <canvas id="my_canvas">
+  </canvas>
+  <script type="text/javascript">
+    var mc_ele = document.getElementById("my_canvas");
+    var mc = mc_ele.getContext("2d");
+    var grd = mc.createLinearGradient(0,20,50,0);
+    //使用strokeStyle后line 只有一种颜色
+    mc.moveTo(20,20);
+    mc.lineTo(50,50);
+    mc.strokeStyle = "rgba(255,0,0,0.9)";
+    mc.stroke();
+    mc.moveTo(100,100);
+    mc.lineTo(60,80);
+    mc.strokeStyle = "rgba(0,255,0,1)";
+    mc.stroke();
+
+    //0 0.5 1 应该是线的百分比
+    grd.addColorStop(0,"#FF0000");
+    grd.addColorStop(0.5,"#FFFFFF");
+	grd.addColorStop(1,"#00FF00");
+	mc.fillStyle=grd;
+	mc.fillRect(0,0,100,100);
+  </script>
+
+  <canvas id="test_canvas" width="600px" height="600px">
+  </canvas>
+  <script type="text/javascript">
+    var test_canvas_dom = document.getElementById("test_canvas");
+    var test_canvas = test_canvas_dom.getContext("2d");
+    test_canvas.beginPath();
+    test_canvas.moveTo(100, 100);
+    test_canvas.lineTo(300, 100);
+    test_canvas.lineTo(300, 200);
+    test_canvas.stroke();
+  </script>
+</body>
+</html>

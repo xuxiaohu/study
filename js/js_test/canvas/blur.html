@@ -1,0 +1,39 @@
+<!DOCUTYPE html>
+<html>
+<head>
+	<title>
+    draw the line by canvas
+	</title>
+    <style type="text/css">
+      #my_canvas {
+        width: 200px;
+        height: 200px;
+        background: #FF0000;
+      }
+      #my_canvas:hover {
+        background: #FFFF00;
+      }
+
+      #blur_div {
+        background: #00FF00;
+        width: 200px;
+        height: 200px;
+      }
+
+      #blur_div:hover {
+        background: #0000FF;
+      }
+    </style>
+</head>
+<body>
+  <input id="blur_div" value="1111"/> 
+  <canvas id="my_canvas" class="my_canvas">
+  </canvas>
+  <script type="text/javascript">
+   var blur_elem = document.getElementById("blur_div");
+   blur_elem.onblur = function(){
+       alert(111);
+   };
+  </script>
+</body>
+</html>

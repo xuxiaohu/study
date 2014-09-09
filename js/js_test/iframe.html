@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div id="out_div">
+        <script type="text/javascript">
+            var a = function(){
+                return "1"
+            }
+           //  alert(a);
+        </script>
+    </div>
+    <div>
+    </div>
+<script type="text/javascript" src="jquery1.7.2.js">
+</script>
+<script type="text/javascript">
+var      form_str = "<form id='rcx_export_form' method='post' action='/network_view/export' target='_self'>" +
+                 "<input id='export_layer' name='layer' >" +
+                 "<input id='export_view' name='view' >" +
+                 "<input id='export_filter_ids' name='filter_ids' >" +
+                 "</form>";
+      console.log("create ifr");
+      iframe = $("<iframe id='export_csv'></iframe>")
+      iframe[0].attachEvent('onload', function(){
+        iframe.append($(form_str));
+      });  
+     iframe.appendTo($("body"));
+</script>
+</body>
+</html>

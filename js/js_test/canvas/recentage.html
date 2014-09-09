@@ -1,0 +1,53 @@
+<!DOCUTYPE html>
+<html>
+<head>
+	<title>
+    draw the line by canvas
+	</title>
+</head>
+<body>
+  <canvas id="my_canvas">
+  </canvas>
+  <script type="text/javascript">
+    var mc_ele = document.getElementById("my_canvas");
+    var mc = mc_ele.getContext("2d");
+    //mc.fillRect(25,25,100,100);
+    //mc.clearRect(45,45,60,60);
+    //mc.strokeRect(50,50,50,50);
+
+    //mc.beginPath();
+    //mc.moveTo(75,50);
+    //mc.lineTo(100,75);
+    //mc.lineTo(100,25);
+    //mc.fill();
+    //mc.stroke();
+
+/*
+    for (i=0;i<4;i++){
+  for(j=0;j<3;j++){
+    mc.beginPath();
+    var x              = 25+j*50;               // x 坐標
+    var y              = 25+i*50;               // y 坐標
+    var radius         = 20;                    // 弧度半徑
+    var startAngle     = 0;                     // 圓弧起點
+    var endAngle       = Math.PI+(Math.PI*j)/2; // 圓弧終點
+    var anticlockwise  = i%2==0 ? false : true; // 順時針或反時針
+ 
+    mc.arc(x,y,radius,startAngle,endAngle, anticlockwise);
+ 
+    if (i>1){
+      mc.fill();
+    } else {    
+      mc.stroke();
+    }
+  }
+}*/
+
+mc.beginPath();
+mc.moveTo(75,25);
+//mc.lineTo(25,25);
+mc.quadraticCurveTo(25,25,25,62.5);
+mc.stroke();
+  </script>
+</body>
+</html>

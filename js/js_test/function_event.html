@@ -1,0 +1,18 @@
+<body>
+	<button id="1">1111</button>
+	<button id="2">2222</button>
+  <script type="text/javascript">
+    var button1 = document.getElementById("1"),
+        button2 = document.getElementById("2")
+    button1.addEventListener("click", function(){
+    	button2.click()
+    	console.log("button1");
+    });
+    button2.addEventListener("click", function(){
+    	for(var i =0 ; i< 1000;i++){
+    		console.log("button2");
+    	}
+    })
+
+  </script>
+</body>

@@ -1,0 +1,47 @@
+<script type="text/javascript"> 
+var a = {};  
+a[0] = 1;  
+a[1] = 2;  
+Array.prototype.push.call(a, 3);  
+//alert (a.length);
+</script>
+
+<div id="ddd">dddddddd</div>  
+  
+<script>  
+  
+var Data = function(){  
+    var cache = {};  
+    var expando = "zengtan" + +new Date;  
+    var uuid = 1;  
+      
+    var setData = function(elem, key, value){  
+            var id = elem[expando];  
+            if (!id){   //第一次给元素设置缓存  
+                id = ++uuid;  
+                elem[expando] = id;  
+            }  
+            if (!cache[id]){   //这个元素第一次进行缓存或者缓存已被清空  
+                cache[id] = {};  
+            }  
+            cache[id][key] = value;  
+    };  
+  
+    var getData = function(elem, key){  
+        var id = elem[expando];  //取得cache里跟dom节点关联的key  
+        return cache[id] && null || false;  //如果缓存里没有, 返回null  
+    }  
+  
+    return {  
+        setData: setData,  
+        getData: getData      
+    }  
+}()  
+  var div = document.getElementById("ddd");  
+Data.setData(div, "name", "zengtan");  
+var value = Data.getData(div, "name");  
+alert (value) ;
+a= 1,3;
+alert(a);
+</script>  
+  

@@ -1,0 +1,77 @@
+typeof 返回值有六种可能： "number," "string," "boolean," "object," "function," 和 "undefined."
+
+nodeName属性: 节点的名字。
+如果节点是元素节点，那么返回这个元素的名字。此时，相当于tagName属性。
+比如：
+<p>aaaa</p> : 则返回 p ;
+如果是属性节点，nodeName将返回这个属性的名字。
+如果是文本节点，nodeName将返回一个#text的字符串。
+
+nodeType 
+1-ELEMENT //元素节点
+2-ATTRIBUTE //属性节点
+3-TEXT //文本节点
+4-CDATA
+5-ENTITY REFERENCE
+6-ENTITY
+7-PI (processing instruction)
+8-COMMENT
+9-DOCUMENT
+10-DOCUMENT TYPE
+11-DOCUMENT FRAGMENT
+12-NOTATION
+
+nodeValue属性 ： 返回一个字符串，这个节点的值。
+如果节点是元素节点，那么返回null；（注意下）
+如果是属性节点，nodeValue将返回这个属性的值。
+如果是文本节点，nodeValue将返回这个文本节点的内容。
+
+
+相等和等同运算符的规则分别如下：
+
+相等运算符
+如果操作数具有相同的类型，则判断其等同性，如果两个操作数的值相等，则返回true(相等)，否则返回false(不相等).
+如果操作数的类型不同，则按照这样的情况来判断：
+l  null和undefined相等
+2  其中一个是数字，另一个是字符串，则将字符串转换为数字，在做比较
+3  其中一个是true，先转换成1(false则转换为0)在做比较
+4  如果一个值是对象，另一个是数字/字符串，则将对象转换为原始值(通过toString()或者valueOf()方法)
+5  其他情况，则直接返回false
+
+等同运算符
+如果操作数的类型不同，则不进行值的判断，直接返回false
+如果操作数的类型相同，分下列情况来判断：
+l  都是数字的情况，如果值相同，则两者等同(有一个例外，就是NaN，NaN与其本身也不相等)，否则不等同
+2  都是字符串的情况，与其他程序设计语言一样，如果串的值不等，则不等同，否则等同
+3  都是布尔值，且值均为true/false，则等同，否则不等同
+4  如果两个操作数引用同一个对象(数组，函数)，则两者完全等同，否则不等同
+5  如果两个操作数均为null/undefined，则等同，否则不等同
+
+下面是页面元素的定位：getBoundingClientRect()和document.documentElement.scrollTop
+http://cache.baidu.com/c?m=9f65cb4a8c8507ed4fece763105392230e54f733779c954228c3933fc239045c0535b6ec3a5d1219b2c37a6d1ca94f56e8fa356537747af1c4969c0f80fbc4277adf6123716cd61c558f4ff4971332c050c104b2f845f0bb8074d3f98395c85422910f127af1a6d60b474b9d33b6033093b1993f025e60ecb06122a00e2b6fc87d17e910a5a6&p=8434c64ad3d214ff57e6903e4d4d&user=baidu&fm=sc&query=%22getBoundingClientRect%22+in+document.documentElement&qid=a57c48e709daa24a&p1=4
+
+
+网页可见区域宽： document.body.clientWidth
+网页可见区域高： document.body.clientHeight
+网页可见区域宽： document.body.offsetWidth (包括边线的宽)
+网页可见区域高： document.body.offsetHeight (包括边线的高)
+网页正文全文宽： document.body.scrollWidth
+网页正文全文高： document.body.scrollHeight
+网页被卷去的高： document.body.scrollTop
+网页被卷去的左： document.body.scrollLeft
+网页正文部分上： window.screenTop
+网页正文部分左： window.screenLeft
+屏幕分辨率的高： window.screen.height
+屏幕分辨率的宽： window.screen.width
+屏幕可用工作区高度： window.screen.availHeight
+屏幕可用工作区宽度： window.screen.availWidth 
+http://wenku.baidu.com/view/ced77b76f46527d3240ce03a.html
+
+
+
+Instance.__proto__=InstanceClass.prototype(ie不支持)
+以上说明：实例的属性(__proto__)等于类的prototpye，我们可以看出，实例的"__proto__"正好巧接在类的"prototype"上，通过原型链(prototype)
+来查找其方法并扩展，我们会发现其方法(Method)与其属性(Property)都是Public（当然你也可以用Private，即不用this）,而prototype其实就是一对象，
+用来记录方法做为一个集合 
+Array.__proto__    结果是function Empty() {}
+Object__proto__    结果是function Empty() {}

@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title></title>
+	<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js"
+        djConfig="parseOnLoad: true">
+    </script>
+</head>
+<body>
+<input type="radio" name="aa" id="test1"/>
+<input type="radio" name="aa" id="test2"/>
+<input type="radio" name="aa" id="test3"/>
+    <script >
+      dojo.connect(dojo.byId("test1"), "onchange", function(e){alert(this.id)});
+      dojo.connect(dojo.byId("test2"), "onchange", function(e){alert(this.id)});
+      dojo.connect(dojo.byId("test3"), "onchange", function(e){alert(this.id)});
+    </script>
+</body>
+</html>

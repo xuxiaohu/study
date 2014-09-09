@@ -1,0 +1,26 @@
+1.获取标签属性
+
+IE：div.value或者div["value"]
+FF：div.getAttribute("value")
+2. eval("idName")问题 
+IE下,,可以使用eval("idName")或getElementById("idName")来取得id为idName的HTML对象;Firefox下只能使用getElementById("idName")来取得id为idName的HTML对象. 
+3.const问题 
+说明:Firefox下,可以使用const关键字或var关键字来定义常量;IE下,只能使用var关键字来定义常量. 
+解决方法:统一使用var关键字来定义常量.
+4. innerHTML的区别 
+Firefox不支持innerHTML, 解决办法可以如下 
+rng = document.createRange(); 
+el = document.getElementById(elementid); 
+rng.setStartBefore(el); 
+htmlFrag = rng.createContextualFragment(content); 
+while (el.hasChildNodes()) //清除原有内容，加入新内容 
+el.removeChild(el.lastChild); 
+el.appendChild(htmlFrag);
+5. Px要加上
+FireFox中设置HTML标签的style时，所有位置性和字体尺寸的值必须后跟px。这个ie也是支持的。
+6. padding 问题 
+padding 5px 4px 3px 1px FireFox无法解释简写, 
+必须改成 padding-top:5px; padding-right:4px; padding-bottom:3px; padding-left:1px;
+7. CSS透明 
+IE：filter:progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=60)
+FF：opacity:0.6

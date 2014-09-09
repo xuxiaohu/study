@@ -1,0 +1,25 @@
+<script type="text/javascript">
+  function b(){
+    alert(4);
+  }
+  var a = 5;
+  test = function(){
+    var a = 1;
+    this.a = 2;
+    var b = function(){
+      alert(3);
+    };    
+    var self = {
+      b: function(){
+        b();
+        alert(a);
+        alert(this.a);
+      }
+    };
+    return self;
+  }
+  test2 = test();
+  test2.b();
+  test3 = new test;
+  test3.b();
+</script>

@@ -1,0 +1,57 @@
+<script type="text/javascript" src="jquery1.7.2.js">
+</script>
+<script type="text/javascript">
+(function($,win){
+  $.xmlOp = function(options){
+    var settings = {
+                    element:null,
+                    ie:$.browser.msie
+                   };
+    $.extend( settings, options );
+    var _this = settings.element.jquery ? settings.element[0]:settings.element;
+    var new_element;
+    function xmlReplace(str,node){
+      if($(_this).find(str) && $(_this).find(str)[0].parentNode){
+       var replace_xml = node.firstChild;
+       $(_this).find(str)[0].parentNode.replaceChild(replace_xml,$(_this).find(str)[0]);
+      }
+    }
+    
+    function init(str_obj){
+      return typeof str_obj === "string" ? $.parseXML(str_obj) : str_obj;
+    }
+    
+    function append(node){
+      var docObj = _this.documentElement;
+      win.test = _this;
+      docObj.appendChild(node.firstChild);
+    }
+  
+  var self = {
+           appendChildNode:function(str_obj){
+             new_element = init(str_obj);
+             append(new_element);
+             return $(_this);
+           },
+           removeNode:function(str){
+             return $(_this).find(str).remove();
+           },
+           replaceNode:function(str,str_obj){
+             new_element = init(str_obj);
+             xmlReplace(str,new_element)
+             return $(_this);
+           },
+           find:function(str){
+             return $(_this).find(str);
+           }
+  };
+  return self;
+};
+})(jQuery,window)
+</script>
+
+var a = $.parseXML("<a><b></b><b><c></c></b><d></d></a>");
+$(a).find("b:last").remove() ;   // the result is "<a><b></b><d></d></a>" 
+$(a).find("d")[0].parentNode.replaceChild($.parseXML("<g><f></f></g>").firstChild,$(a).find("d")[0]); //result is "<a><b></b><g><f></f></g></a>"
+$(a).find("f")[0].appendChild($.parseXML("<e><h></h></e>").firstChild)   //when the node is not rootnode , the result is "<a><b></b><g><f><e><h></h></e></f></g></a>"
+$(a)[0].documentElement.appendChild($.parseXML("<j></j>").firstChild)  //when the node is rootnode , the result is "<a><b></b><g><f><e><h></h></e></f></g><j></j></a>"

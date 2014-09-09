@@ -1,0 +1,17 @@
+<script type="text/javascript">
+alert.call(window,"123".slice(0,-1));
+//call, apply方法区别是,从第二个参数起, 
+//call方法参数将依次传递给借用的方法作参数, 而apply直接将这些参数放到一个数组中再传递, 最后借用方法的参数列表是一样的.
+//结果好像也不同,我操应该是相同的啊（但是alert不同，实际使用相同）
+alert(["123","22","33"]);
+alert.call(window,["123","22","33"]);
+alert.apply(window,["123","22","33"]);
+a = [];
+Array.prototype.push.apply(a,["123","22","33"]);
+alert(a);
+setTimeout(function(i){alert(i);}(5),50);
+
+//alert.call(window,["123","22","33"].slice(0,3));
+//省略等于全部，妈的api上竟然没有，我操
+//alert.call(window,["123","22","33"].slice());
+</script>

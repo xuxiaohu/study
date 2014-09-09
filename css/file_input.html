@@ -1,0 +1,44 @@
+<style>
+.fileinput-button {
+    background: url("images/btn.gif") no-repeat scroll left top transparent;
+   
+    height: 20px;
+    width: 86px;
+    cursor: pointer;
+    display: inline-block;
+    color:#000000;
+    line-height: 20px;
+    margin: 0px;
+    overflow: hidden;
+    padding: 0px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.file-input {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    direction: ltr;
+    cursor: pointer;
+    height: 20px;
+    line-height: 20px;
+    width: auto;
+    font-size: 23px !important;
+}
+.btn-text{
+	vertical-align: top;
+}
+</style>
+<span class="fileinput-button" onChange="document.getElementById('iso_file').value = document.getElementById('select_file').value;"> 
+    <span class='btn-text'>select</span>
+    <input type="file" class="file-input" id="select_file" name="select_file"/>
+</span>
+

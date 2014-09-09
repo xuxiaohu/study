@@ -1,0 +1,29 @@
+<script type="text/javascript" src="prime_worker.js">
+</script>
+<script type="text/javascript">
+
+
+ var worker = new Worker("prime_worker.js"); 
+ worker.onmessage = function(event) { 
+    var result = event.data; 
+    alert("计算完成，质数个数为：" + result); 
+ }; 
+
+ function calculate() { 
+    var limit = 100000; 
+    worker.postMessage(limit); 
+ }
+  /*
+ var worker = new SharedWorker("prime_worker.js"); 
+
+ worker.port.onmessage = function(event) { 
+    var result = event.data; 
+    alert("计算完成，质数个数为：" + result); 
+ }; 
+
+ function calculate() { 
+    var limit = 100000; 
+    worker.port.postMessage(limit); 
+ }*/
+ calculate();
+</script>

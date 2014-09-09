@@ -1,0 +1,98 @@
+<script type="text/javascript" src="jquery1.7.2.js">
+</script>
+<script type="text/javascript">
+(function($) {
+    
+    // The topics/subscriptions hash
+    var topics = {};
+    
+    /**
+     * @description Publishes some data on a named topic.
+     * @param {String} topic The topic to publish.
+     * @param {Array} [args] The data to publish.
+     * @param {Boolean} [sync] Whether publish topics in order of execution (sync = true) or when possible (default).      
+     * @returns {jQuery} returns jQuery object.
+     * @example
+     * $( "#sidebarWidget" ).publish( "/some/topic", [ "a", "b", "c" ] ); 
+     */
+     $.fn.publish = function ( topic, args, sync ) {   
+        
+        if ( typeof topics[topic] == "undefined" ) { 
+            return this;
+        }
+        
+        var args = args || [],
+            argsLength = args.length, 
+            t = topics[topic], 
+            l = t.length,
+            that = this,
+            publish = function() {
+                that.each( function( i, obj ) {             
+                    // Let's add a reference to the publisher object
+                    args[argsLength] = obj;
+                    
+                    for (var i = 0; i < l; i++) {
+                        t[i].callback.apply( t[i].object, args );
+                    }   
+                });
+            };
+        
+        if ( sync === true ) {
+            publish();
+        } else {
+            setTimeout( publish, 0 );
+        }
+        
+        return this;
+    };
+    
+    
+    /**
+     * @description Registers a callback on a named topic.
+     * @param {String} topic The topic to subscribe to.
+     * @param {Function} callback The handler. Anytime something is published on a subscribed 
+     * topic, the callback will be called with the published array as ordered arguments.            
+     * @returns {jQuery} returns jQuery object.
+     * @example
+     * $( "#header" ).subscribe( "/some/topic", function( a, b, c ) { // handle data } ); 
+     */
+    $.fn.subscribe = function( topic, callback ) {
+        topics[topic] = topics[topic] || [];
+        
+        this.each( function( i, obj ) {
+            // Array.push() is way slower. See: http://jsperf.com/array-push-el-vs-array-array-length-el
+            topics[topic][topics[topic].length] = { "object": obj, "callback": callback };
+        });
+        
+        return this;    
+    };
+    
+    
+    /**
+     * @description Unregisters a previously registered callback for a named topic.
+     * @param {String} topic The topic to unsubscribe from.     
+     * @returns {jQuery} returns jQuery object.
+     * @example
+     * $( "#header" ).unsubscribe( "/some/topic" ); 
+     */
+    $.fn.unsubscribe = function ( topic ) {
+        
+        if ( typeof topics[topic] == "undefined" ) { 
+            return this;
+        }
+        
+        this.each( function( i, obj ) {
+            topics[topic] = $.grep( topics[topic], function( aElem, j ) {
+                return ( obj !== aElem.object );
+            });
+        });
+        
+        if ( topics[topic].length === 0 ) {
+            delete topics[topic];
+        }
+        
+        return this;    
+    };
+    
+}(jQuery));
+</script>

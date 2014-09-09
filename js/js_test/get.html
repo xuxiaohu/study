@@ -1,0 +1,12 @@
+<head>    
+<script src="jquery-latest.js" type="text/javascript"> </script>
+</head>  
+<input id="test"/>
+<button id="go">submit</button>
+<script type-"text/javascript">
+  $("#go").click(function(){
+     $.get($("#test").val(), 
+     	    {a: $("#test").val()}
+     	   );
+  });
+</script>

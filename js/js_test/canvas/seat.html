@@ -1,0 +1,60 @@
+<!DOCUTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>
+    draw the line by canvas
+  </title>
+</head>
+<body>
+  <canvas id="test_canvas" width="1200px" height="800px" style="width:1200px;height:800px;">
+  </canvas>
+  <script type="text/javascript">
+  var node = {};
+  layout = {
+    left:10,
+    right:10,
+    top:10,
+    bottom:10
+  }
+
+  function inside(){
+
+  }
+  </script>
+  <script type="text/javascript">
+    var test_canvas_dom = document.getElementById("test_canvas");
+    var test_canvas = test_canvas_dom.getContext("2d");
+    //test_canvas.fillStyle = '#325FA2';
+    //test_canvas.fillRect(25,25,100,50);
+    //test_canvas.fill();
+    //test_canvas.fillStyle="#FFF";
+    var i = 0;
+    while(i < 50){
+      var x = 10 + i * 15;
+      var y = 10
+      test_canvas.strokeRect(x,y,100,60);
+      test_canvas.font="10px Arial";
+      test_canvas.fillText(new String("许小虎小"),x,22);
+      test_canvas.fillText(new String("马天笑笑"),x + 50,22);
+      test_canvas.fillText(new String("马天笑"),x,62);
+      test_canvas.fillText(new String("马天笑"),x + 50,62);
+      test_canvas.fillText(new String("8369"),x + 30,42);
+      i = i + 10;
+    }
+    test_canvas.clearRect(10 + 1,10 + 1,50,20);
+    test_canvas.clearRect(60 - 1,40 + 5,50,20);
+    
+    test_canvas.save();
+    test_canvas.fillStyle = 'blue';
+    test_canvas.fillText(new String("马天笑笑"),10,22);
+    test_canvas.restore();
+    test_canvas.fillText(new String("马天笑笑"),50,62);
+   // test_canvas.strokeRect(10,10,50,20);
+    document.getElementById("test_canvas").onclick = function(e){
+      var event = e || window.event;
+      console.log(event.pageX);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>test</title>
+</head>
+<body>
+    <div id="red" style="width: 100px; height:100px; background:red">
+        <div id="blue" style="width: 80px; height:80px; background:blue">
+            <div id="yellow" style="width: 50px; height:50px; background:yellow">
+                <div id="pink" style="width: 30px; height:30px; background:pink"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var pink = document.getElementById("pink");
+        var yellow = document.getElementById("yellow");
+        var blue = document.getElementById("blue");
+        var red = document.getElementById("red");
+
+        var handler = function (e) {
+            var phase = {
+                1: "capture",
+                2: "target",
+                3: "bubble"
+            };
+            console.log("target: " + e.target.id + ", " +
+                        "current target: " + e.currentTarget.id + ", " +
+                        "phase: " + phase[e.eventPhase]);
+        };
+
+        pink.addEventListener("click", handler, true);
+        yellow.addEventListener("click", handler, false);
+        blue.addEventListener("click", handler, true);
+        blue.addEventListener("click", handler, false);
+        red.addEventListener("click", handler, true);
+    </script>
+</body>
+</html>

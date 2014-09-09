@@ -1,0 +1,180 @@
+<div>
+<input name="enable_tenant_management" id="enable_tenant_management_on" type="radio" value="true"/>
+<label for="enable_tenant_management_on">åg ©§π§Î</label>
+</div>
+1. Add ":" (colon) after each label for all screens.
+2. Alignment of input element and label
+3. Confirm screen
+   - disable "Finish" button, only enable it when the Confirm page has been downloaded and rendered.
+   - display password as "****"
+   - align left
+   - add L-Platform sub-title
+   - remove sub-title's background color and add "font-weight: bold; color: black"
+4. Double check all screens in IE9, Noma-san's environment sometimes does not display next button.
+
+
+(function ($, window, document, undefined) {
+    $.fn.validTextInput = function(options){
+      if(this.length == 0){
+        return this;
+      }
+      var settings = {
+        required: false,
+        pattern: '',
+        warningClass: null,
+        onValidate: null,
+        focus:false,
+        invalid:false
+      };
+      var _this = this;
+      settings = $.extend(settings, options);
+      var callback = $.Callbacks();
+      var events = ["blur",""];
+      if(settings.pattern){
+        events = events.push("keyup");
+      }
+      if(_this.attr("placeholder")){
+        actions = events.push("placeholder");
+      }
+      var self = {
+        focus:function(){
+          if(_this.hasClass("placeholder")){
+            _this.val(_this.prop('placeholder')).addClass("placeholder");
+          }
+        },
+        blur:function(){
+        },
+        change:function(){
+        },
+        keyup:function(){
+        },
+        placeholder:function(){
+          if(_this.val() == ""){
+            _this.val(_this.prop('placeholder')).addClass("placeholder");
+          }
+        }
+      };
+      if(this.length == 1){
+        $(this).validTextInput(options);
+      }else {
+        this.each(function () {
+          $(this).validTextInput(options);
+        });
+      }
+      return this;
+    }
+    
+    function createInstance (obj) {
+        if (typeof Object.create !== 'function') {
+            function F () {};
+            F.prototype = obj;
+            return new F();
+        } else {
+            return Object.create(obj);
+        }
+    }
+
+    var Input = {
+        init: function (options, elem) {
+            var self = this;
+            
+            self.elem = elem;
+            self.$elem = $(elem);
+
+            self.isFocus = false;
+            self.invalid = false;
+
+            self.options = $.extend({}, $.fn.validTextInput.options, options, {
+                required: self.$elem.prop('required') || undefined,
+                pattern: self.$elem.attr('pattern') || undefined,
+                placeholder: self.$elem.prop('placeholder')
+            });
+
+            if (self.options.placeholder && ($.trim(self.$elem.val()) === '' || $.trim(self.$elem.val()) === self.placeholder)) {
+              self.placeholder = self.$elem.attr('placeholder');  
+              self.$elem.val(self.placeholder)
+                        .addClass("placeholder");
+            }
+
+            self.$elem.on({
+                'validate.validTextInput': function () {
+                    var $this = $(this);
+
+                    self.invalid = false;
+                    $this.removeClass(self.options.warningClass);
+                    
+
+
+                    if (self.options.required && $.trim($this.val()) === '' && !self.isFocus) {
+                        self.invalid = true;
+                    }
+
+                    if (self.options.pattern && !(new RegExp(self.options.pattern).test($this.val())) && $.trim($this.val()) !== '') {
+                        self.invalid = true;
+                    }
+
+                    if (self.invalid) {
+                        $this.addClass(self.options.warningClass);
+                        
+                    }
+                    
+                    if (typeof self.options.onValidate === 'function') {
+                        self.options.onValidate.apply(this, $.merge([self.invalid], arguments));
+                    }
+                },
+
+                'change.validTextInput': function () {
+                    var $this = $(this);
+                    if (self.options.placeholder && $this.hasClass('placeholder')) {
+                        $this.removeClass('placeholder');
+                    }
+                    $(this).trigger('validate.validTextInput');
+                },
+
+                'keyup.validTextInput': function () {
+                    $(this).trigger('validate.validTextInput');
+                },
+
+                'focus.validTextInput': function () {
+                    var $this = $(this);
+                    self.isFocus = true;
+
+                    if (self.options.placeholder && $this.hasClass('placeholder')) {
+                        $this.val('')
+                               .removeClass('placeholder');
+                    }
+
+                    $this.trigger('validate.validTextInput');
+                },
+
+                'blur.validTextInput': function () {
+                    var $this = $(this);
+                    self.isFocus = false;
+
+                    if (self.options.placeholder && $.trim($this.val()) === '') {
+                        $this.val(self.placeholder).addClass('placeholder');
+                    }
+
+                    $this.trigger('validate.validTextInput');
+                }
+            });
+        }
+    };
+
+    $.fn.validTextInput = function (options) {
+        return this.each(function () {
+            var input = createInstance(Input);
+            input.init(options, this);
+
+            $.data(this, 'validTextInput', input);
+        });
+    };
+
+    $.fn.validTextInput.options = {
+        required: false,
+        pattern: '',
+        warningClass: null,
+        onValidate: null
+    };
+
+}(jQuery, window, document));

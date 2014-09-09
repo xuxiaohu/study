@@ -1,0 +1,16 @@
+<script src="jquery1.7.2.js" type="text/javascript"> </script>
+<script type="text/javascript">
+var defer = $.Deferred(),
+  filtered = defer.pipe(function( value ) {
+    return value * 2;
+  });
+
+defer.resolve( 5 );
+filtered.done(function( value ) {
+  alert( "Value is ( 2*5 = ) 10: " + value );
+});
+
+filtered.done(function( value ) {
+  alert( "Value is ( 3*5 = ) 15: " + value );
+});
+</script>

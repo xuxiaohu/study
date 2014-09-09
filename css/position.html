@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <style type="text/css" rel="stylesheet">
+      body{
+        position:fixed;
+        top:50px;
+        background-color: gray;
+      }
+      .div1{
+        position:static;
+        left:100px;
+        top:100px;
+        border-style: solid;
+        border-width:5px;
+        border-color:black;
+      }
+      .div2{
+        position:fixed;
+        left:100px;
+        top:100px;
+        border-style: solid;
+        border-width:5px;
+        border-color:red;
+      }
+      .div3{
+        position:absolute;
+        right:100px;
+        top:100px;
+        border-style: solid;
+        border-width:5px;
+        border-color:white;
+        z-index:20;
+      }
+      .div4{
+        position:relative;
+        right:100px;
+        top:100px;
+        border-style: solid;
+        border-width:5px;
+        border-color:white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">
+       show the different position static!
+    </div>
+    <div class="div2">
+       show the different position fixed!
+    </div>
+    <div class="div3">
+       show the different position absolute!
+    </div>
+    <div class="div4">
+       show the different position relative!
+    </div>
+    <div class="div5">
+      因为ie不支持inheirent，所以就不测试了
+    </div>
+  <body>
+</html>

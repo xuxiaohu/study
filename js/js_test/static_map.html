@@ -1,0 +1,16 @@
+<body>
+<div id="mapdiv" style="width:400px;height:400px">
+<image src="http://maps.google.com/maps/api/staticmap?center=32.060255,118.796877&zoom=14&size=400x400&markers=color:green|label:S|32.060255,118.796877&sensor=false"/>
+</div>
+<div style="border: 1px solid rgb(153, 153, 153);width:200px;position:absolute;z-index:50;" id="indo_div">
+<p style="align:center">焦点科技股份有限公司</p>
+<p>焦点科技股份有限公司</p>
+<p>电话：025-6667777</p>
+</div>
+<script src="jquery-latest.js" type="text/javascript"> </script>
+<script type="text/javascript"> 
+var h = $("#mapdiv");
+var i = $("#indo_div");
+i.style.top = h.offset().top + h.height()/2 - 50;
+</script>
+</body>

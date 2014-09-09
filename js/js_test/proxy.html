@@ -1,0 +1,34 @@
+<div id="test" name="aa">11111</div>
+<script type="text/javascript" src="jquery1.7.2.js">
+</script>
+<script type="text/javascript">
+var obj = {
+  name: "John",
+  test: function() {
+    alert( this.name );
+    $("#test").unbind("click", obj.test);
+  }
+};
+
+var test = function(){
+  obj.test();
+};
+new test();
+
+
+//obj.test();//John
+$("#test").click(obj.test); //nothing
+//$("#test").click( jQuery.proxy( obj, "test" ) ); //John
+
+var mod = {view:1};
+mod.load = function(fun){
+   this.view = 2;
+   fun();
+  //$($.proxy(func,this));
+};
+
+mod.load(function(){
+  this.view = $("#test");
+});
+mod.view;
+</script>

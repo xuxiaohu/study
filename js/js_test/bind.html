@@ -1,0 +1,20 @@
+<head>    
+<script src="jquery-latest.js" type="text/javascript"> </script>
+</head>  
+<body>
+
+<input type="text" id="test" class="a b" value="111"/>
+<span id="ex"></span>
+</body>
+<script type="text/javascript">
+var test_elem = $("#test");
+test_elem.bind("click",function(){alert(222);});
+//test_elem.click();
+a = $("#test").data();
+//事件的bind和event.add最终的结果console下可以看到，非常的吊
+//c = a = 2;
+//a[0] = 1;
+//alert(c);
+document.getElementById("ex").innerHTML = decodeURI("\u3042'\u0026quot;\\ *\u0026amp;^1982@@++11 -- =");
+document.body.appendChild(document.createTextNode("\u3042'\u0026quot;\\ *\u0026amp;^1982@@++11 -- ="));
+</script>

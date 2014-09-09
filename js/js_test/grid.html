@@ -1,0 +1,234 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Flexigrid</title>
+<link rel="stylesheet" type="text/css" href="./flexigrid/css/flexigrid.css">
+<script type="text/javascript" src="./jquery1.7.2.js"></script>
+<script type="text/javascript" src="./flexigrid/js/flexigrid.js"></script>
+<script type="text/javascript" src="./jquery.xml2json.js"></script>
+</head>
+<body>
+<p>This is a sample implementation attached to a form, to add additional parameters.</p>
+rcxadm mgrctl stop &&  rcxadm mgrctl start
+<form id="sform">
+	<p>
+	The values you entered will be place in name column for demo's sake.<br />
+	Value 1 : <input type="text" name="val1" value="" autocomplete="off" /><br />
+    Value 2 : Is a hidden input with value 3<input type="hidden" name="val2" value="3" /><br />
+    Value 3 : 
+    <select name="val3">
+    	<option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+        <option value="4">Four</option>
+        <option value="5">Five</option>
+    </select><br />
+    Value 4 : <input type="checkbox" name="val4" id="val4" value="4" /><label for="val4">This will pass a value 4 if checked</label>
+    </p>
+    <p>
+	    <input type="submit" value="Submit" />
+    </p>
+</form>
+
+<table id="flex1" style="display:none">
+
+</table>
+<table id="setup_wiz_san_storage_ports_combination_table" class="w_024_h_table_rowtitle">
+	  <thead>
+		  <tr class="w_024_h_th_color">
+        <th width="100" class="w_024_h_r_title2">Storage unit ID</th>
+        <th Width="300" class="w_024_h_r_title3">Portset</th>
+		  </tr>
+	  </thead>
+	  <tbody>
+              <tr class="w_024_h_tr_color1">
+          <td class="w_024_h_data_line"><span>192.168.1.24</span><input id="list__storage_unit_id" name="list[][storage_unit_id]" type="hidden" value="192.168.1.24" />          </td>
+          <td class="w_024_h_data_line"><span>500000E0D00C7006:500000E0D00C7086<br>500000E0D00C7086:500000E0D00C7087</span><input id="list__portset" name="list[][portset]" type="hidden" value="500000E0D00C7006:500000E0D00C7086&lt;br&gt;500000E0D00C7086:500000E0D00C7087" />          </td>
+        </tr>
+              <tr class="w_024_h_tr_color2">
+          <td class="w_024_h_data_line"><span>192.168.1.25</span><input id="list__storage_unit_id" name="list[][storage_unit_id]" type="hidden" value="192.168.1.25" />          </td>
+          <td class="w_024_h_data_line"><span>500000E0D00C6006:500000E0D00C6086</span><input id="list__portset" name="list[][portset]" type="hidden" value="500000E0D00C6006:500000E0D00C6086" />          </td>
+        </tr>
+              <tr class="w_024_h_tr_color1">
+          <td class="w_024_h_data_line"><span>192.168.1.26</span><input id="list__storage_unit_id" name="list[][storage_unit_id]" type="hidden" value="192.168.1.26" />          </td>
+          <td class="w_024_h_data_line"><span>500000E0D00C6007:500000E0D00C6087</span><input id="list__portset" name="list[][portset]" type="hidden" value="500000E0D00C6007:500000E0D00C6087" />          </td>
+        </tr>
+              <tr class="w_024_h_tr_color2">
+          <td class="w_024_h_data_line"><span>192.168.1.27</span><input id="list__storage_unit_id" name="list[][storage_unit_id]" type="hidden" value="192.168.1.27" />          </td>
+          <td class="w_024_h_data_line"><span>500000E0D00C6008:500000E0D00C6088</span><input id="list__portset" name="list[][portset]" type="hidden" value="500000E0D00C6008:500000E0D00C6088" />          </td>
+        </tr>
+      	  </tbody>
+    </table>
+<script type="text/javascript">
+ $("#setup_wiz_san_storage_ports_combination_table").flexigrid({
+    resizable: false,
+    height: 100,
+    singleSelect: true,
+    showToggleBtn: false,
+    dataType: "json"});
+
+var xml_string = '<Configs>\
+	<os_settings>\
+	<os_setting name="">\
+	<workgroup_name></workgroup_name>\
+	<full_name>WORKNAME</full_name>\
+	<org_name>WORKORGANIZATION</org_name>\
+	<product_key>306</product_key>\
+	<license_mode>seat</license_mode>\
+	<license_users>9</license_users>\
+	<admin_password>asdf</admin_password>\
+	<domain_name>localdomain</domain_name>\
+	<dns_search_path>local</dns_search_path>\
+	<hwclock>UTC</hwclock>\
+	<dns_address1/>\
+	<dns_address2/>\
+	<dns_address3/>\
+	</os_setting>\
+	</os_settings>\
+<storage_settings>\
+<storage_port_settings>\
+<storage_port_setting id="192.168.1.24">\
+<port_sets>\
+<port_set>500000E0D00C4001:500000E0D00C4002</port_set>\
+<port_set>500000E0D00C4003:500000E0D00C4004</port_set>\
+</port_sets>\
+</storage_port_setting>\
+<storage_port_setting id="192.168.1.25">\
+<port_sets>\
+<port_set>500000E0D00C5001:500000E0D00C5002</port_set>\
+</port_sets>\
+</storage_port_setting>\
+</storage_port_settings>\
+<fc_connection_patterns>\
+<fc_connection_pattern pattern_name="Pattern1">\
+<num_of_fc>4</num_of_fc>\
+<boot_fc_port>1,2</boot_fc_port>\
+<storage_informations>\
+<storage_information num="0">\
+<fc_connection_id>000192601261</fc_connection_id>\
+<hba>0:1</hba>\
+<storage_port>07GPort1:08GPort1</storage_port>\
+<property>"-awww","-bxxx"</property>\
+</storage_information>\
+<storage_information num="1">\
+<fc_connection_id>000192601262</fc_connection_id>\
+<hba>2:3</hba>\
+<storage_port>09GPort1:10GPort1</storage_port>\
+<property>"-cyyyzzz"</property>\
+</storage_information>\
+</storage_informations>\
+</fc_connection_pattern>\
+<fc_connection_pattern pattern_name="Pattern2">\
+<num_of_fc>2</num_of_fc>\
+<boot_fc_port>1</boot_fc_port>\
+<storage_informations>\
+<storage_information num="2">　\
+<fc_connection_id>000192601263</fc_connection_id>\
+<hba>0:1</hba>\
+<storage_port>11GPort1:12GPort1</storage_port>\
+<property></property>\
+</storage_information>\
+</storage_informations>\
+</fc_connection_pattern>\
+</fc_connection_patterns>\
+</storage_settings>\
+</Configs>';
+var xml_content = $($.parseXML(xml_string));
+var tmp_storage_port_settings = xml_content.find("storage_port_settings").clone();
+$("#flex1").flexigrid({
+	dataType: 'json',
+	colModel : [
+		{display: 'ISO', name : 'id', width : 40, sortable : true, align: 'center'},
+		{display: 'Name', name : 'name', width : 180, sortable : true, align: 'left'},
+		{display: 'Printable Name', name : 'printable_name', width : 120, sortable : true, align: 'left'},
+		{display: 'ISO3', name : 'iso3', width : 130, sortable : true, align: 'left'},
+		{display: 'Number Code', name : 'numcode', width : 80, sortable : true, align: 'right'}
+		],
+	sortorder: "asc",
+	usepager: true,
+	title: 'Countries',
+	useRp: true,
+	rp: 15,
+	showTableToggleBtn: true,
+	width: 700,
+	height: 200
+});
+
+$('#setup_wiz_san_storage_ports_combination_table').flexAddData($.xml2json($.parseXML(xml_string)).storage_settings.storage_port_settings.storage_port_setting[0]);
+
+tmp_storage_port_settings_grid_data = {page:1};
+var storage_port_setting_array = tmp_storage_port_settings.find("storage_port_setting");
+tmp_storage_port_settings_grid_data.total = storage_port_setting_array.length;
+var rows = [];
+var cell = [];
+var  port_text;
+storage_port_setting_array.each(function(i,elem){
+	tmp_obj = {};
+	cell = [];
+	cell.push($(elem).attr("id"));
+	var port_set = $(elem).find("port_set");
+    if(port_set.length > 0){
+      if(port_set.length > 1){
+      	 port_text = "";
+      	 port_set.each(function(j, port){
+      	   if(port_text == ""){
+      	   	  port_text =  $(port).text();
+      	   }else
+             port_text = port_text + "<br/>" + $(port).text();
+      	 });
+         cell.push("<span>" + port_text + "</span>");
+      }else{
+         cell.push("<span>" + port_set.text() + "</span>");
+      }
+    }
+    tmp_obj.cell = cell;
+    rows.push(tmp_obj);
+})
+tmp_storage_port_settings_grid_data.rows = rows;
+
+get_fc_connection_patterns_to_table = function(tmp_fc_connection_patterns){
+      var tmp_fc_connection_patterns_grid_data = {page:1},
+          fc_connection_pattern_array = tmp_fc_connection_patterns.find("fc_connection_pattern"),
+          rows = [],
+          cell = [],
+          mp_obj = {},
+          storage_unit_info,
+          property;
+      tmp_fc_connection_patterns_grid_data.total = fc_connection_pattern_array.length;
+      fc_connection_pattern_array.each(function(i,elem){
+        tmp_obj = {};
+        cell = [];
+        cell.push($(elem).find("pattern_name").text());
+        cell.push($(elem).find("num_of_fc").text());
+        cell.push($(elem).find("boot_fc_port").text());
+        var storage_information = $(elem).find("storage_information");
+        if(storage_information.length > 0){
+             storage_unit_info = "";
+             storage_information.each(function(j, storage_information_node){
+               if(storage_unit_info == ""){
+                  storage_unit_info =  '"' + $(storage_information_node).find("fc_connection_id").text() + '",' + 
+                                '"' + $(storage_information_node).find("hba").text() + '",' + 
+                                '"' + $(storage_information_node).find("storage_port").text() + '"';
+                  property = $(storage_information_node).find("property").text(); 
+               }else{
+                 storage_unit_info = storage_unit_info + "<br/>" + '"' + $(storage_information_node).find("fc_connection_id").text() + '",' + 
+                                '"' + $(storage_information_node).find("hba").text() + '",' + 
+                                '"' + $(storage_information_node).find("storage_port").text() + '"';
+                  property = property + '<br/>' +  $(storage_information_node).find("property").text(); 
+               }
+               });
+             cell.push("<span>" + storage_unit_info + "</span>");
+             cell.push("<span>" + property + "</span>");
+           }
+        tmp_obj.cell = cell;
+        rows.push(tmp_obj);
+      })
+      tmp_fc_connection_patterns_grid_data.rows = rows;
+      return tmp_fc_connection_patterns_grid_data;
+    }
+
+    var tmp_fc_connection_patterns = xml_content.find("fc_connection_patterns").clone();
+    var rows = get_fc_connection_patterns_to_table(tmp_fc_connection_patterns)
+</script>
+</body>
+</html>

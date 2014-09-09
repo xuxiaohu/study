@@ -1,0 +1,29 @@
+<script type="text/javascript">
+var a = function(){
+  var x = 1; //相当于private属性
+  this.y = 2;
+  //var this.y = 2; 语法有问题
+  this.z = function(){
+    x = 3;
+  };
+  this.get_x = function(){
+    return x;
+  };
+  
+  function e(){
+    alert("444");
+  };
+};
+a.prototype = {
+      b : 5443543,
+      f : function(){
+        return "ddfd";
+      }
+	};
+c = new a();
+d = new a();
+c.z();
+alert(c.get_x()); //3
+alert(d.get_x()); //1
+//c.e(); 内部函数无法访问
+</script>

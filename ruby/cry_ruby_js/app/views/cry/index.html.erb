@@ -1,0 +1,14 @@
+<div id="original_text"></div>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+<script>
+<%= ["3.1.2 3","3.1.2 4","3.1.2 6","3.1.2 7","私"].to_json.html_safe%>
+var iv = CryptoJS.enc.Base64.parse("kT+uMuPwUk2LH4cFbK0GiA==");
+var key = CryptoJS.enc.Hex.parse("<%= @secrate_key%>");
+var secrate = "<%= @secrate%>";
+var encrypted = {};
+encrypted.ciphertext = CryptoJS.enc.Base64.parse(secrate);
+var original_text = CryptoJS.AES.decrypt(secrate,
+	    key,
+	    {iv: CryptoJS.enc.Hex.parse("00000000000000000000000000000000")});
+document.getElementById("original_text").innerHTML = original_text.toString((CryptoJS.enc.Utf8));
+</script>

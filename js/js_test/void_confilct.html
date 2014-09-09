@@ -1,0 +1,18 @@
+<script type="text/javascript" src="../dojo.js.uncompressed.js">
+</script>
+<script type="text/javascript">
+(function(context) {
+  var xuxiaohujs = context.hujs = {};
+  var hujs = {
+    a : function(){alert(222);},
+    b : function(){this["a"]();}
+  }
+  xuxiaohujs = hujs;
+  xuxiaohujs["b"]()
+  for(var k in xuxiaohujs){
+    context[k] = xuxiaohujs[k];
+  }
+})(window);
+b();
+//增加别名的作用域，主要来源于jquery和dojo的源代码
+</script>

@@ -1,0 +1,18 @@
+<script type="text/javascript">
+var name = "abc"  
+function testGlobal() {  
+    alert(name); //2处：undefined  
+    var name = "def";  
+    alert(name); //3处：def  
+      
+    alert(this.name); //4处：abc  
+      
+    this. name = "ghi";  
+    alert(this.name); //5处：ghi  
+}  
+alert(name); //1处：abc  
+  
+testGlobal();  
+  
+alert(name); //6处：ghi 
+</script>

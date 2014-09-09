@@ -1,0 +1,29 @@
+<script type="text/javascript">
+var a = function(){
+  var x = 1;
+  this.y = 2;
+  //var this.y = 2; 语法有问题
+  this.z = function(){
+    alert("333");
+  }
+};
+a.prototype = {
+      b : 5443543,
+      f : function(){
+        return "ddfd";
+      }
+	};
+	
+	a.prototype = {
+      e : 11111,
+      f : function(){
+        return "22222";
+      }
+	};
+c = new a();
+d = new a();
+alert(d.e); // 11111
+alert(d.b); //undef
+alert(d.f()); //2222
+// prototype会覆盖
+</script>

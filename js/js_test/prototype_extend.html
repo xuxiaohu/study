@@ -1,0 +1,35 @@
+<script type="text/javascript">
+/*
+var str = "global";
+function scopeTest(){
+    alert(str);
+    var str = "local";
+    alert(str);
+}
+scopeTest();
+//因为在函数scopeTest的定义中，预先访问了未声明的变量str，然后才对str变量进行初始化，
+//所以第一个print(str)会返回undifined错误。那为什么函数这个时候不去访问外部的str变量呢？
+//这是因为，在词法分析结束后，构造作用域链的时候，会将函数内定义的var变量放入该链，
+//因此str在整个函数scopeTest内都是可见的(从函数体的第一行到最后一行)，由于str变量本身是未定义的，
+//程序顺序执行，到第一行就会返回未定义，第二行为str赋值，所以第三行的print(str)将返回”local”。*/
+
+
+var a = function(){
+  var x = 1;
+  this.y = 2;
+  //var this.y = 2; 语法有问题
+  this.z = function(){
+    alert("333");
+  }
+};
+a.prototype = {
+      b : 5443543,
+      f : function(){
+        return "ddfd";
+      }
+	};
+c = new a();
+d = new a();
+alert(d.z === c.z); //内存不同
+alert(c.f === d.f);// 内存相同
+</script>

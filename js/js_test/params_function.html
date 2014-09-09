@@ -1,0 +1,20 @@
+<script>
+function noParams(){
+  console.log("there is no params");
+  console.log(arguments.callee);
+}
+
+function oneParams(params1){
+  console.log("The params is " + params1);
+}
+
+// oneParams(1,2)  => The params is  1
+
+function twoParams(params1,params2){
+  console.log("The params is " + params1+ params2);
+}
+
+// oneParams(1)  => The params is 1undefined 
+// oneParams(1,2,3)  => The params is 12 
+// oneParams([1,2],3)  => The params is 1,23 
+</script>

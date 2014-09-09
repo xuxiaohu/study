@@ -1,0 +1,15 @@
+<script type="text/javascript" src="../dojo.js.uncompressed.js">
+</script>
+<script type="text/javascript">
+function testGlobal() {
+  alert(333);
+}
+dojo.declare("childClass",testGlobal,{test: function(){alert(5);},constructor:function(){alert(111);}});
+cc = new childClass;
+cc.test();
+testGlobal.prototype.constructor = function(){alert(666);};
+dd = new testGlobal();
+//dojo 对prototype的constructor做了特殊的调用
+ff = window["testGlobal"]();
+//通过字符串来调用函数，学习dojo的源代码的灵感，当然也可以使用eval来实现
+</script>
