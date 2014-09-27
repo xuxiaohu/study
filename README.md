@@ -2,5 +2,5 @@ study
 =====
 
 
-ruby javascript css study in test test branch
+ruby javascript css study in test1 branch
 changed by others
